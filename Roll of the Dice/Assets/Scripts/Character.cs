@@ -32,9 +32,9 @@ public class Character : MonoBehaviour
     public float moveSpeed = 5f;
 
     protected AbilityCard[] deck; // only used by cards
-    protected Vector3 targetPosition;
+    public Vector3 targetPosition;
 
-    private float epsilon = 0.05f;
+    public float epsilon = 0.05f;
     private BattleManager battleManager;
 
     void Start()
@@ -50,7 +50,7 @@ public class Character : MonoBehaviour
         if(!moveRangeObj.activeSelf && hitRangeObj.activeSelf) hitRangeObj.SetActive(false);
 
         bool rangeOn = (battleManager.playerController.currentAlly == this && outline.GetComponent<SpriteRenderer>().color.a > 0);
-        if(!rangeOn && battleManager.playerController.playerTurn)
+        if(!rangeOn && battleManager.playerController.playerTurn && battleManager.playerController.activeDiceIndex == -1)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -136,7 +136,7 @@ public class Character : MonoBehaviour
         return character;
     }
 
-    protected void DoAbility(AbilityCard card)
+    public void DoAbility(AbilityCard card)
     {
         StartCoroutine(MoveTowardsPoint(card));
     }

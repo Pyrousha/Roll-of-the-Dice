@@ -10,7 +10,8 @@ public class DialoguePipeline : MonoBehaviour
     public struct DialogueEvent
     {
         public string text;
-        public UnityEvent onContinue; // if null, continue to next bit of text, otherwise wait 
+        public bool hideOnContinue;
+        public UnityEvent onContinue;
     }
 
     public TextMeshProUGUI textBox;
@@ -29,12 +30,12 @@ public class DialoguePipeline : MonoBehaviour
 
     public void onClick()
     {
-        if(dialogueEvents[dialogueIndex].onContinue != null)
+        if(dialogueEvents[dialogueIndex].hideOnContinue)
         {
-            dialogueEvents[dialogueIndex].onContinue.Invoke();
             gameObject.SetActive(false);
         }
+        dialogueEvents[dialogueIndex].onContinue?.Invoke();
         dialogueIndex++;
-        textBox.SetText(dialogueEvents[dialogueIndex].text);
+        if(dialogueIndex < dialogueEvents.Length) textBox.SetText(dialogueEvents[dialogueIndex].text);
     }
 }

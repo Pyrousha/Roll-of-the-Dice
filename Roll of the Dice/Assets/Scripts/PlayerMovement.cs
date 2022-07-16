@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     int allyIndex = 0;
 
     BattleManager battleManager;
-    int activeDiceIndex = -1;
+    public int activeDiceIndex = -1;
 
     public Character currentAlly;
     public Character waitingAlly;

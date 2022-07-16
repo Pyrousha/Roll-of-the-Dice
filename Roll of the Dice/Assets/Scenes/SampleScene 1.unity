@@ -180,6 +180,7 @@ MonoBehaviour:
   diceSelectContainer: {fileID: 234958923}
   diceInfoContainer: {fileID: 144822110}
   playerTurn: 0
+  activeDiceIndex: -1
   currentAlly: {fileID: 0}
   waitingAlly: {fileID: 0}
 --- !u!114 &37887559
@@ -651,6 +652,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1792296334 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 201713349074778071, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+  m_PrefabInstance: {fileID: 7857289540378381790}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1919471921
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,6 +879,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 1792296334}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[0].text
+      value: We have stop King Card. But first I'm going to teach you how to play!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[1].text
+      value: We have stop King Card. But first I'm going to teach you how to play!
+      objectReference: {fileID: 0}
     - target: {fileID: 4268665525298357420, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
