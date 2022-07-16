@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     //[SerializeField]
     //private float moveSpeed;
 
-    public List<Character> allAllies;
+    //public List<Character> allAllies;
+    List<Character> allAllies;
 
     public GameObject diceSelectContainer;
     public GameObject diceInfoContainer;
@@ -23,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     BattleManager battleManager;
     int activeDiceIndex = 0;
+
+    Character currentAlly;
 
     // Start is called before the first frame update
     void Start()
@@ -39,12 +42,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 //Check if the player clicked within their movement range
                 //if(hit.collider.gameObject.layer == gameObject.layer)
-                if(hit.collider.gameObject == allAllies[allyIndex].moveRangeObj)
+                if(hit.collider.gameObject == currentAlly.moveRangeObj)
                 {
-                    if(!allAllies[allyIndex].hitRangeObj.activeSelf) allAllies[allyIndex].hitRangeObj.SetActive(true);
+                    if(!currentAlly.hitRangeObj.activeSelf) currentAlly.hitRangeObj.SetActive(true);
                     Vector3 rangePos = hit.point;
-                    rangePos.z = allAllies[allyIndex].hitRangeObj.transform.position.z;
-                    allAllies[allyIndex].hitRangeObj.transform.position = rangePos;
+                    rangePos.z = currentAlly.hitRangeObj.transform.position.z;
+                    currentAlly.hitRangeObj.transform.position = rangePos;
 
                     if(Input.GetMouseButtonDown(0))
                     {
@@ -53,24 +56,24 @@ public class PlayerMovement : MonoBehaviour
                         //Clicked on a valid point
                         targetPosition = hit.point;
                         //targetPosition.z = transform.position.z;
-                        targetPosition.z = allAllies[allyIndex].transform.position.z;
+                        targetPosition.z = currentAlly.transform.position.z;
 
                         //disable move range obj
                         //moveRangeObj.SetActive(false);
                         EndAllyTurn(allyIndex);
-                        allAllies[allyIndex].hitRangeObj.SetActive(false);
+                        currentAlly.hitRangeObj.SetActive(false);
 
                         // TODO: dummy dice object
                         //AbilityDice activeDice = new AbilityDice();
 
                         //Start moving character
-                        StartCoroutine(MoveTowardsPoint(allAllies[allyIndex].GetEquippedDice()[activeDiceIndex]));
-                        allAllies[allyIndex].anim.SetTrigger("DoSpin");
+                        StartCoroutine(MoveTowardsPoint(currentAlly.GetEquippedDice()[activeDiceIndex]));
+                        currentAlly.anim.SetTrigger("DoSpin");
 
                         return;
                     }
                 } 
-                else if(allAllies[allyIndex].hitRangeObj.activeSelf) allAllies[allyIndex].hitRangeObj.SetActive(false);
+                else if(currentAlly.hitRangeObj.activeSelf) currentAlly.hitRangeObj.SetActive(false);
             }
         }
     }
@@ -88,13 +91,13 @@ public class PlayerMovement : MonoBehaviour
         HideDiceInfo();
         activeDiceIndex = index;
         diceSelectContainer.SetActive(false);
-        allAllies[allyIndex].moveRangeObj.SetActive(true);
+        currentAlly.moveRangeObj.SetActive(true);
     }
 
     public void ShowDiceInfo(int index)
     {
         int i = 0;
-        foreach(AbilityDice.DiceAction action in allAllies[allyIndex].GetEquippedDice()[index].DiceSides)
+        foreach(AbilityDice.DiceAction action in currentAlly.GetEquippedDice()[index].DiceSides)
         {
             GameObject go = diceInfoContainer.transform.GetChild(i).gameObject;
             go.GetComponentInChildren<UnityEngine.UI.Image>().sprite = action.icon;
@@ -129,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
         diceSelectContainer.SetActive(true);
 
         // create new buttons
-        AbilityDice[] dice = allAllies[allyIndex].GetEquippedDice();
+        AbilityDice[] dice = currentAlly.GetEquippedDice();
         int i = 0;
         for(int childIndex = 0; childIndex < diceSelectContainer.transform.childCount; childIndex++)
         {
@@ -139,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         }
         */
         int i = 0;
-        foreach(AbilityDice dice in allAllies[allyIndex].GetEquippedDice())
+        foreach(AbilityDice dice in currentAlly.GetEquippedDice())
         {
             GameObject go = diceSelectContainer.transform.GetChild(i).gameObject;
             go.GetComponentInChildren<TextMeshProUGUI>(true).SetText(dice.name);
@@ -156,35 +159,36 @@ public class PlayerMovement : MonoBehaviour
 
     void StartAllyTurn(int index)
     {
+        currentAlly = battleManager.GetAllPlayerCharacters()[index];
         //allAllies[index].moveRangeObj.SetActive(true);
         //allAllies[index].hitRangeObj.SetActive(true);
         InitDiceSelect();
     }
 
     void EndAllyTurn(int index) {
-        allAllies[index].moveRangeObj.SetActive(false);
+        currentAlly.moveRangeObj.SetActive(false);
         //allAllies[index].hitRangeObj.SetActive(false);
     }
 
     IEnumerator MoveTowardsPoint(AbilityDice dice)
     {
         //while (Vector3.Distance(transform.position, targetPosition) > epsilon)
-        while (Vector3.Distance(allAllies[allyIndex].transform.position, targetPosition) > epsilon)
+        while (Vector3.Distance(currentAlly.transform.position, targetPosition) > epsilon)
         {
             //player is not done moving yet
 
-            //allAllies[allyIndex].transform.position = Vector3.Lerp(allAllies[allyIndex].transform.position, targetPosition, Time.deltaTime * moveSpeed);
-            allAllies[allyIndex].transform.position = Vector3.Lerp(allAllies[allyIndex].transform.position, targetPosition, Time.deltaTime * allAllies[allyIndex].moveSpeed);
+            //currentAlly.transform.position = Vector3.Lerp(currentAlly.transform.position, targetPosition, Time.deltaTime * moveSpeed);
+            currentAlly.transform.position = Vector3.Lerp(currentAlly.transform.position, targetPosition, Time.deltaTime * currentAlly.moveSpeed);
 
             yield return null;
         }
 
         //Close enough to target position
-        allAllies[allyIndex].transform.position = targetPosition;
-        allAllies[allyIndex].anim.SetTrigger("SpinOver");
+        currentAlly.transform.position = targetPosition;
+        currentAlly.anim.SetTrigger("SpinOver");
 
         // hit all characters within range except the one doing the action
-        Transform hitRangeTransform = allAllies[allyIndex].hitRangeObj.transform;
+        Transform hitRangeTransform = currentAlly.hitRangeObj.transform;
         Collider2D[] hitArr = Physics2D.OverlapCircleAll(targetPosition, hitRangeTransform.GetComponent<CircleCollider2D>().radius * hitRangeTransform.localScale.x);
         //Debug.DrawLine(hitRangeTransform.position, hitRangeTransform.position + Vector3.right * hitRangeTransform.GetComponent<CircleCollider2D>().radius * hitRangeTransform.localScale.x);
         //Debug.Log(hitRangeTransform.GetComponent<CircleCollider2D>().radius * hitRangeTransform.localScale.x);
@@ -197,17 +201,18 @@ public class PlayerMovement : MonoBehaviour
             if(charHit != null)
             {
                 if(charHit.isPlayerCharacter) continue;
-                if(charHit != allAllies[allyIndex]) dice.DoAction(charHit);
+                if(charHit != currentAlly) dice.DoAction(charHit);
             }
         }
 
         //show move range again (just for testing)
         //moveRangeObj.SetActive(true);
         allyIndex++;
-        if(allyIndex == allAllies.Count)
+        //if(allyIndex == allAllies.Count)
+        if(allyIndex == battleManager.GetAllPlayerCharacters().Length)
         {
-            battleManager.EndPlayerTurn();
             playerTurn = false;
+            battleManager.EndPlayerTurn();
         }
         else StartAllyTurn(allyIndex);
     }

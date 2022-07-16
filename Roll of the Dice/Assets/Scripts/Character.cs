@@ -56,14 +56,22 @@ public class Character : MonoBehaviour
 
     public virtual void DoTurn() {} // for AI use
 
+    Character[] currentChain;
+
+    public void DoTurn(Character[] chain)
+    {
+        currentChain = chain;
+        DoTurn();
+    }
+
     protected Character[] GetAllPlayerCharacters()
     {
-        List<Character> playerCharacters = new List<Character>();
-        foreach(Character c in transform.parent.GetComponentsInChildren<Character>())
-        {
-            if(c.isPlayerCharacter) playerCharacters.Add(c);
-        }
-        return playerCharacters.ToArray();
+        return transform.parent.GetComponent<BattleManager>().GetAllPlayerCharacters();
+    }
+
+    protected Character[] GetAllAICharacters()
+    {
+        return transform.parent.GetComponent<BattleManager>().GetAllAICharacters();
     }
 
     protected Character GetClosestPlayerCharacter()
@@ -129,6 +137,15 @@ public class Character : MonoBehaviour
                 if(!charHit.isPlayerCharacter) continue;
                 if(charHit != this) card.DoAction(charHit);
             }
+        }
+
+        if(currentChain == null) transform.parent.GetComponent<BattleManager>().StartPlayerTurn();
+        else if(currentChain.Length == 1) currentChain[0].DoTurn(null);
+        else
+        {
+            Character[] chain = new Character[currentChain.Length-1];
+            System.Array.Copy(currentChain, 1, chain, 0, currentChain.Length-1);
+            currentChain[0].DoTurn(chain);
         }
     }
 }  

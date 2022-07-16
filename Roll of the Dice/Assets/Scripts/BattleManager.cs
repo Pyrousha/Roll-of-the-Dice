@@ -24,8 +24,34 @@ public class BattleManager : MonoBehaviour
         playerController.StartPlayerTurn();
     }
 
+    public Character[] GetAllPlayerCharacters()
+    {
+        List<Character> playerCharacters = new List<Character>();
+        foreach(Character c in GetComponentsInChildren<Character>())
+        {
+            if(c.isPlayerCharacter) playerCharacters.Add(c);
+        }
+        return playerCharacters.ToArray();
+    }
+
+    public Character[] GetAllAICharacters()
+    {
+        List<Character> playerCharacters = new List<Character>();
+        foreach(Character c in GetComponentsInChildren<Character>())
+        {
+            if(!c.isPlayerCharacter) playerCharacters.Add(c);
+        }
+        return playerCharacters.ToArray();
+    }
+
+    public void StartPlayerTurn()
+    {
+        playerController.StartPlayerTurn();
+    }
+
     public void EndPlayerTurn()
     {
+        /*
         foreach(Character character in GetComponentsInChildren<Character>())
         {
             if(character.isPlayerCharacter) continue;
@@ -33,5 +59,15 @@ public class BattleManager : MonoBehaviour
             // TODO: check if all player characters are dead
         }
         playerController.StartPlayerTurn();
+        */
+        // TODO: check if all enemies are dead
+        Character[] allAIs = GetAllAICharacters();
+        if(allAIs.Length == 1) allAIs[0].DoTurn(null);
+        else
+        {
+            Character[] chain = new Character[allAIs.Length-1];
+            System.Array.Copy(allAIs, 1, chain, 0, allAIs.Length-1);
+            allAIs[0].DoTurn(chain);
+        }
     }
 }
