@@ -183,7 +183,6 @@ MonoBehaviour:
   hitRangeObj: {fileID: 1106047014}
   equipment: {fileID: 1521059711}
   moveSpeed: 5
-  doneMoving: 0
 --- !u!1 &37887556
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +563,6 @@ MonoBehaviour:
   hitRangeObj: {fileID: 650987691}
   equipment: {fileID: 1126481790}
   moveSpeed: 5
-  doneMoving: 0
 --- !u!1 &234958923
 GameObject:
   m_ObjectHideFlags: 0
@@ -996,7 +994,6 @@ MonoBehaviour:
   hitRangeObj: {fileID: 262657836}
   equipment: {fileID: 1470254382}
   moveSpeed: 5
-  doneMoving: 0
 --- !u!1001 &385110495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1674,7 +1671,7 @@ Animator:
   m_GameObject: {fileID: 895059529}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: af3507acd71f6c24f8c9e5d3071275be, type: 2}
+  m_Controller: {fileID: 22100000, guid: 1d7997bee59e59b41ab2cad9b913f214, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1725,7 +1722,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b09e31a35700de3429ed792fb18cad2a, type: 3}
+  m_Sprite: {fileID: 1930001821, guid: 7846fc8eef6bab143aba85e962c815ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3507,7 +3504,6 @@ MonoBehaviour:
   hitRangeObj: {fileID: 1798315113}
   equipment: {fileID: 1912425632}
   moveSpeed: 5
-  doneMoving: 0
 --- !u!1 &1912425632
 GameObject:
   m_ObjectHideFlags: 0
@@ -4061,7 +4057,6 @@ MonoBehaviour:
   hitRangeObj: {fileID: 1191280385}
   equipment: {fileID: 1825642747}
   moveSpeed: 5
-  doneMoving: 0
 --- !u!1 &2133337011
 GameObject:
   m_ObjectHideFlags: 0
