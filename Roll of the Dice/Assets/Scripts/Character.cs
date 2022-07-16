@@ -30,6 +30,8 @@ public class Character : MonoBehaviour
 
     public void Die() {
         // TODO
+        anim.SetTrigger("Die");
+        gameObject.SetActive(false);
     }
 
     public AbilityDice[] GetEquippedDice() {
