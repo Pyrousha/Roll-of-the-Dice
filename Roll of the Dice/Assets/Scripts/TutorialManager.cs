@@ -25,7 +25,8 @@ public class TutorialManager : MonoBehaviour
             if(goonDelay > 0f)
             {
                 goonDelay -= Time.deltaTime;
-                if(goonDelay <= 0f){
+                if(goonDelay <= 0f)
+                {
                     waitForGoon = false;
                     dialogue.gameObject.SetActive(true);
                 }
@@ -43,6 +44,30 @@ public class TutorialManager : MonoBehaviour
                 }
             }
         }
+        else if(waitForCharacter)
+        {
+            if(battleManager.playerController.currentAlly != null)
+            {
+                waitForCharacter = false;
+                dialogue.gameObject.SetActive(true);
+            }
+        }
+        else if(waitForDie)
+        {
+            if(battleManager.playerController.activeDiceIndex != -1)
+            {
+                waitForDie = false;
+                dialogue.gameObject.SetActive(true);
+            }
+        }
+        else if(waitForWin)
+        {
+            if(goon.health <= 0)
+            {
+                waitForWin = false;
+                dialogue.gameObject.SetActive(true);
+            }
+        }
     }
 
     bool waitForGoon = false;
@@ -51,5 +76,30 @@ public class TutorialManager : MonoBehaviour
     {
         goon.anim.SetTrigger("DoSpin");
         waitForGoon = true;
+    }
+
+    bool waitForCharacter = false;
+
+    public void SelectCharacter()
+    {
+        waitForCharacter = true;
+    }
+
+    bool waitForDie = false;
+
+    public void SelectDie()
+    {
+        waitForDie = true;
+    }
+
+    bool waitForWin = false;
+    public void Win()
+    {
+        waitForWin = true;
+    }
+
+    public void EndTutorial()
+    {
+        
     }
 }

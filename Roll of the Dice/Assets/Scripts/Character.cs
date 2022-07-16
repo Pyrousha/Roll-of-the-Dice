@@ -9,7 +9,7 @@ public class Character : MonoBehaviour
     [SerializeField]
     private int maxHealth;
     [SerializeField]
-    private int health;
+    public int health {get; private set;}
 
     public int physicalAttack;
     public int magicAttack;
