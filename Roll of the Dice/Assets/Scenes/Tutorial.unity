@@ -711,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3374133955705317245, guid: c410e00bd276ee148a5a88ff0c6b57e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.46
+      value: -13.44
       objectReference: {fileID: 0}
     - target: {fileID: 3374133955705317245, guid: c410e00bd276ee148a5a88ff0c6b57e7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -828,11 +828,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[0].text
-      value: We have to stop King Dice, but first I'll teach you how to play!
+      value: We have to stop the king, but first I'll teach you how to play!
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[1].text
@@ -861,12 +861,16 @@ PrefabInstance:
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[6].text
       value: The circle following your mouse shows the area where you will deal damage
-        during your attack. Click near th king's lackey to deal damage and defeat
-        him! He'll fight back in between your turns so be quick about it!
+        during your attack.
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[7].text
-      value: Great job! Now you can join up with your allies to fight your waay to
+      value: Click near the king's lackey to deal damage and defeat him! He'll fight
+        back in between your turns, so be quick about it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].text
+      value: Great job! Now you can join up with your allies to fight your way to
         the king!
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
@@ -891,10 +895,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[6].hideOnContinue
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[7].hideOnContinue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].hideOnContinue
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
@@ -915,10 +923,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[6].onContinue.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[7].onContinue.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].onContinue.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
@@ -946,6 +958,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 37887560}
@@ -967,6 +983,10 @@ PrefabInstance:
       objectReference: {fileID: 37887560}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[7].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 37887560}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 37887560}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
@@ -994,6 +1014,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: EnterGoon
       objectReference: {fileID: 0}
@@ -1011,10 +1035,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[6].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Win
+      value: EndTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[7].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Win
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: EndTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
@@ -1042,6 +1070,10 @@ PrefabInstance:
       value: TutorialManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TutorialManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[1].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -1063,6 +1095,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
       propertyPath: dialogueEvents.Array.data[7].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028377958419658180, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
+      propertyPath: dialogueEvents.Array.data[8].onContinue.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4268665525298357420, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
