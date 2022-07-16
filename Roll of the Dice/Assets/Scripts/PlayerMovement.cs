@@ -19,13 +19,13 @@ public class PlayerMovement : MonoBehaviour
 
     private float epsilon = 0.05f;
 
-    bool playerTurn = false;
+    public bool playerTurn = false;
     int allyIndex = 0;
 
     BattleManager battleManager;
-    int activeDiceIndex = 0;
+    int activeDiceIndex = -1;
 
-    Character currentAlly;
+    public Character currentAlly;
 
     // Start is called before the first frame update
     void Start()
@@ -36,21 +36,24 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(playerTurn) {
+        if(playerTurn && currentAlly != null) {
+            //bool diceSelectOn = (activeDiceindex == -1) && (currentAlly != null);
             RaycastHit2D[] hitArr = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             foreach(RaycastHit2D hit in hitArr)
             {
+                
                 //Check if the player clicked within their movement range
                 //if(hit.collider.gameObject.layer == gameObject.layer)
                 if(hit.collider.gameObject == currentAlly.moveRangeObj)
                 {
-                    if(!currentAlly.hitRangeObj.activeSelf) currentAlly.hitRangeObj.SetActive(true);
+                    if(!currentAlly.hitRangeObj.activeSelf && activeDiceIndex != -1) currentAlly.hitRangeObj.SetActive(true);
                     Vector3 rangePos = hit.point;
                     rangePos.z = currentAlly.hitRangeObj.transform.position.z;
                     currentAlly.hitRangeObj.transform.position = rangePos;
 
-                    if(Input.GetMouseButtonDown(0))
+                    if(Input.GetMouseButtonDown(0) && activeDiceIndex != -1)
                     {
+                        currentAlly.outline.SetActive(false);
                         //RaycastHit2D[] hitArr = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                         //if(hit.collider.gameObject.layer == gameObject.layer)
                         //Clicked on a valid point
@@ -69,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
                         //Start moving character
                         StartCoroutine(MoveTowardsPoint(currentAlly.GetEquippedDice()[activeDiceIndex]));
                         currentAlly.anim.SetTrigger("DoSpin");
+                        currentAlly.outline.GetComponent<Animator>().SetTrigger("DoSpin");
 
                         return;
                     }
@@ -83,6 +87,11 @@ public class PlayerMovement : MonoBehaviour
         playerTurn = true;
         allyIndex = 0;
         StartAllyTurn(0);
+        currentAlly = null;
+        foreach(Character c in battleManager.GetAllPlayerCharacters())
+        {
+            c.outline.SetActive(true);
+        }
         //InitDiceSelect();
     }
 
@@ -118,7 +127,7 @@ public class PlayerMovement : MonoBehaviour
         diceInfoContainer.SetActive(false);
     }
 
-    void InitDiceSelect()
+    public void InitDiceSelect()
     {
         // How the actual FUCK does the new Unity UI system work? The old one was so much easier
         /*
@@ -159,14 +168,15 @@ public class PlayerMovement : MonoBehaviour
 
     void StartAllyTurn(int index)
     {
-        currentAlly = battleManager.GetAllPlayerCharacters()[index];
+        //currentAlly = battleManager.GetAllPlayerCharacters()[index];
         //allAllies[index].moveRangeObj.SetActive(true);
         //allAllies[index].hitRangeObj.SetActive(true);
-        InitDiceSelect();
+        //InitDiceSelect();
     }
 
     void EndAllyTurn(int index) {
         currentAlly.moveRangeObj.SetActive(false);
+        currentAlly.outline.SetActive(false);
         //allAllies[index].hitRangeObj.SetActive(false);
     }
 
@@ -186,6 +196,7 @@ public class PlayerMovement : MonoBehaviour
         //Close enough to target position
         currentAlly.transform.position = targetPosition;
         currentAlly.anim.SetTrigger("SpinOver");
+        currentAlly.outline.GetComponent<Animator>().SetTrigger("SpinOver");
 
         // hit all characters within range except the one doing the action
         Transform hitRangeTransform = currentAlly.hitRangeObj.transform;
@@ -215,5 +226,7 @@ public class PlayerMovement : MonoBehaviour
             battleManager.EndPlayerTurn();
         }
         else StartAllyTurn(allyIndex);
+        activeDiceIndex = -1;
+        currentAlly = null;
     }
 }

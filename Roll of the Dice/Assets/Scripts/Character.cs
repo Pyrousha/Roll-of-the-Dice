@@ -22,6 +22,10 @@ public class Character : MonoBehaviour
     public GameObject moveRangeObj;
     public GameObject hitRangeObj;
     public GameObject equipment;
+    public GameObject outline;
+
+    public Color color1;
+    public Color color2;
 
     //[SerializeField]
     public float moveSpeed = 5f;
@@ -30,10 +34,44 @@ public class Character : MonoBehaviour
     protected Vector3 targetPosition;
 
     private float epsilon = 0.05f;
+    private BattleManager battleManager;
 
     void Start()
-    {
+    {   
+        battleManager = GetComponentInParent<BattleManager>();
         deck = equipment.GetComponentsInChildren<AbilityCard>();
+        health = maxHealth;
+    }
+
+    public void Update()
+    {   
+        bool rangeOn = (battleManager.playerController.currentAlly == this && outline.activeSelf);
+        if(!rangeOn && battleManager.playerController.playerTurn)
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            RaycastHit2D[] hitArr = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
+            foreach(RaycastHit2D hit in hitArr)
+            {
+                if(hit.transform.gameObject == GetComponentInChildren<SpriteRenderer>().gameObject)
+                {
+                    if(isPlayerCharacter && outline.activeSelf && Input.GetMouseButtonDown(0)) 
+                    {
+                        battleManager.playerController.currentAlly = this;
+                        battleManager.playerController.InitDiceSelect();
+                    }
+                    battleManager.healthSlider.gameObject.SetActive(true);
+                    battleManager.healthSlider.maxValue = maxHealth;
+                    battleManager.healthSlider.value = health;
+                    UnityEngine.UI.Image[] sliderImgs = battleManager.healthSlider.GetComponentsInChildren<UnityEngine.UI.Image>();
+                    sliderImgs[0].color = color2;
+                    sliderImgs[1].color = color1;
+                    rangeOn = true;
+                    break;
+                }
+            }
+        }
+        if(rangeOn != moveRangeObj.activeSelf) moveRangeObj.SetActive(rangeOn);
     }
 
     public void Damage(int hp) {
@@ -48,6 +86,7 @@ public class Character : MonoBehaviour
         // TODO
         anim.SetTrigger("Die");
         gameObject.SetActive(false);
+        battleManager.NotifyDeath(this);
     }
 
     public AbilityDice[] GetEquippedDice() {
@@ -66,12 +105,12 @@ public class Character : MonoBehaviour
 
     protected Character[] GetAllPlayerCharacters()
     {
-        return transform.parent.GetComponent<BattleManager>().GetAllPlayerCharacters();
+        return battleManager.GetAllPlayerCharacters();
     }
 
     protected Character[] GetAllAICharacters()
     {
-        return transform.parent.GetComponent<BattleManager>().GetAllAICharacters();
+        return battleManager.GetAllAICharacters();
     }
 
     protected Character GetClosestPlayerCharacter()
@@ -106,7 +145,6 @@ public class Character : MonoBehaviour
             yield return null;
         }
         anim.SetBool("BlankOver", false);
-        Debug.Log(targetPosition);
         //while (Vector3.Distance(transform.position, targetPosition) > epsilon)
         while (Vector3.Distance(transform.position, targetPosition) > epsilon)
         {
