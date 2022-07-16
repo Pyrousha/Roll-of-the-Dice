@@ -14,7 +14,7 @@ public class SceneController : Singleton<SceneController>
     {
         int currIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (currIndex > SceneManager.sceneCountInBuildSettings -1)    
+        if (currIndex < SceneManager.sceneCountInBuildSettings - 1)    
             SceneManager.LoadScene(currIndex + 1);
         else
         {
