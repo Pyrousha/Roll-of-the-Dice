@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     int activeDiceIndex = -1;
 
     public Character currentAlly;
+    public Character waitingAlly;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,15 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(waitingAlly != null)
+        {
+            if(waitingAlly.anim.GetBool("BlankOver"))
+            {
+                waitingAlly.anim.SetBool("BlankOver", false);
+                waitingAlly.iconSprite.gameObject.SetActive(false);
+            }
+        }
+
         if(playerTurn && currentAlly != null) {
             //bool diceSelectOn = (activeDiceindex == -1) && (currentAlly != null);
             RaycastHit2D[] hitArr = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -53,7 +63,9 @@ public class PlayerMovement : MonoBehaviour
 
                     if(Input.GetMouseButtonDown(0) && activeDiceIndex != -1)
                     {
-                        currentAlly.outline.SetActive(false);
+                        Color color = currentAlly.outline.GetComponent<SpriteRenderer>().color;
+color.a = 0;
+currentAlly.outline.GetComponent<SpriteRenderer>().color = color;
                         //RaycastHit2D[] hitArr = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                         //if(hit.collider.gameObject.layer == gameObject.layer)
                         //Clicked on a valid point
@@ -90,7 +102,9 @@ public class PlayerMovement : MonoBehaviour
         currentAlly = null;
         foreach(Character c in battleManager.GetAllPlayerCharacters())
         {
-            c.outline.SetActive(true);
+            Color color = c.outline.GetComponent<SpriteRenderer>().color;
+            color.a = 1;
+            c.outline.GetComponent<SpriteRenderer>().color = color;
         }
         //InitDiceSelect();
     }
@@ -176,7 +190,9 @@ public class PlayerMovement : MonoBehaviour
 
     void EndAllyTurn(int index) {
         currentAlly.moveRangeObj.SetActive(false);
-        currentAlly.outline.SetActive(false);
+        Color color = currentAlly.outline.GetComponent<SpriteRenderer>().color;
+        color.a = 0;
+        currentAlly.outline.GetComponent<SpriteRenderer>().color = color;
         //allAllies[index].hitRangeObj.SetActive(false);
     }
 
@@ -206,15 +222,21 @@ public class PlayerMovement : MonoBehaviour
         //List<Collider2D> hits = new List<Collider2D>();
         //ContactFilter2D filter = new ContactFilter2D();
         //hitRangeTransform.GetComponent<Collider2D>().OverlapCollider(filter, hits);
+        
+        AbilityDice.DiceAction action = dice.RollAction();
         foreach(Collider2D col in hitArr)
         {
             Character charHit = col.GetComponentInParent<Character>();
             if(charHit != null)
             {
                 if(charHit.isPlayerCharacter) continue;
-                if(charHit != currentAlly) dice.DoAction(charHit);
+                if(charHit != currentAlly) dice.DoAction(action, charHit);
             }
         }
+
+        currentAlly.iconSprite.sprite = action.icon;
+        currentAlly.iconSprite.gameObject.SetActive(true);
+        waitingAlly = currentAlly;
 
         //show move range again (just for testing)
         //moveRangeObj.SetActive(true);

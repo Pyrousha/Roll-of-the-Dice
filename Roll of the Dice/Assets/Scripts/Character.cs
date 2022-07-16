@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     public GameObject hitRangeObj;
     public GameObject equipment;
     public GameObject outline;
+    public SpriteRenderer iconSprite;
 
     public Color color1;
     public Color color2;
@@ -45,7 +46,10 @@ public class Character : MonoBehaviour
 
     public void Update()
     {   
-        bool rangeOn = (battleManager.playerController.currentAlly == this && outline.activeSelf);
+        // cheese cuz I can't be bothered to actually fix it
+        if(!moveRangeObj.activeSelf && hitRangeObj.activeSelf) hitRangeObj.SetActive(false);
+
+        bool rangeOn = (battleManager.playerController.currentAlly == this && outline.GetComponent<SpriteRenderer>().color.a > 0);
         if(!rangeOn && battleManager.playerController.playerTurn)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -55,7 +59,7 @@ public class Character : MonoBehaviour
             {
                 if(hit.transform.gameObject == GetComponentInChildren<SpriteRenderer>().gameObject)
                 {
-                    if(isPlayerCharacter && outline.activeSelf && Input.GetMouseButtonDown(0)) 
+                    if(isPlayerCharacter && outline.GetComponent<SpriteRenderer>().color.a > 0 && Input.GetMouseButtonDown(0)) 
                     {
                         battleManager.playerController.currentAlly = this;
                         battleManager.playerController.InitDiceSelect();

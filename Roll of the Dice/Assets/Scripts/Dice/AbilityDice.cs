@@ -29,7 +29,7 @@ public class AbilityDice : MonoBehaviour
         }
     }
 
-    public void DoAction(Character target)
+    public DiceAction RollAction()
     {
         int sideIndex = Mathf.FloorToInt(Random.value * totalSides);
         int actionIndex = 0;
@@ -39,6 +39,11 @@ public class AbilityDice : MonoBehaviour
             if(sideIndex < 0) break;
             actionIndex++;
         }
-        DiceSides[actionIndex].action?.Invoke(target);
+        return DiceSides[actionIndex];
+    }
+
+    public void DoAction(DiceAction action, Character target)
+    {
+        action.action?.Invoke(target);
     }
 }

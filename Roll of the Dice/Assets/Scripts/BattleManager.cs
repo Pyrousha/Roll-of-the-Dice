@@ -78,6 +78,7 @@ public class BattleManager : MonoBehaviour
         battleOver = true;
         playerController.playerTurn = false;
         playerController.enabled = false;
+        playerController.waitingAlly?.iconSprite.gameObject.SetActive(false);
         foreach(Character c in GetComponentsInChildren<Character>())
         {
             c.moveRangeObj?.SetActive(false);
