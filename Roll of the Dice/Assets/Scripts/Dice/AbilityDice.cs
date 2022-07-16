@@ -6,7 +6,8 @@ using UnityEngine.Events;
 public class AbilityDice : MonoBehaviour
 {
     [System.Serializable]
-    public struct DiceAction {
+    public struct DiceAction
+    {
         public string name;
         public int numOfSides;
         public Sprite icon;
@@ -30,7 +31,7 @@ public class AbilityDice : MonoBehaviour
 
     public void DoAction(Character target)
     {
-        int sideIndex = (int)Mathf.Floor(Random.value * totalSides);
+        int sideIndex = Mathf.FloorToInt(Random.value * totalSides);
         int actionIndex = 0;
         while(true)
         {

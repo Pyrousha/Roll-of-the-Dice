@@ -30,6 +30,8 @@ public class BattleManager : MonoBehaviour
         {
             if(character.isPlayerCharacter) continue;
             character.DoTurn();
+            // TODO: check if all player characters are dead
         }
+        playerController.StartPlayerTurn();
     }
 }

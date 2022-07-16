@@ -6,7 +6,8 @@ using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed;
+    //[SerializeField]
+    //private float moveSpeed;
 
     public List<Character> allAllies;
 
@@ -22,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
 
     BattleManager battleManager;
     int activeDiceIndex = 0;
-    Vector3 oldHitRangePosition;
 
     // Start is called before the first frame update
     void Start()
@@ -64,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
                         //AbilityDice activeDice = new AbilityDice();
 
                         //Start moving character
-                        oldHitRangePosition = allAllies[allyIndex].hitRangeObj.transform.position;
                         StartCoroutine(MoveTowardsPoint(allAllies[allyIndex].GetEquippedDice()[activeDiceIndex]));
                         allAllies[allyIndex].anim.SetTrigger("DoSpin");
 
@@ -174,7 +173,8 @@ public class PlayerMovement : MonoBehaviour
         {
             //player is not done moving yet
 
-            allAllies[allyIndex].transform.position = Vector3.Lerp(allAllies[allyIndex].transform.position, targetPosition, Time.deltaTime * moveSpeed);
+            //allAllies[allyIndex].transform.position = Vector3.Lerp(allAllies[allyIndex].transform.position, targetPosition, Time.deltaTime * moveSpeed);
+            allAllies[allyIndex].transform.position = Vector3.Lerp(allAllies[allyIndex].transform.position, targetPosition, Time.deltaTime * allAllies[allyIndex].moveSpeed);
 
             yield return null;
         }
@@ -185,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
 
         // hit all characters within range except the one doing the action
         Transform hitRangeTransform = allAllies[allyIndex].hitRangeObj.transform;
-        Collider2D[] hitArr = Physics2D.OverlapCircleAll(oldHitRangePosition, hitRangeTransform.GetComponent<CircleCollider2D>().radius * hitRangeTransform.localScale.x);
+        Collider2D[] hitArr = Physics2D.OverlapCircleAll(targetPosition, hitRangeTransform.GetComponent<CircleCollider2D>().radius * hitRangeTransform.localScale.x);
         //Debug.DrawLine(hitRangeTransform.position, hitRangeTransform.position + Vector3.right * hitRangeTransform.GetComponent<CircleCollider2D>().radius * hitRangeTransform.localScale.x);
         //Debug.Log(hitRangeTransform.GetComponent<CircleCollider2D>().radius * hitRangeTransform.localScale.x);
         //List<Collider2D> hits = new List<Collider2D>();
