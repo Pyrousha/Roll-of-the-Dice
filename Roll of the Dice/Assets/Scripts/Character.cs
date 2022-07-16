@@ -42,6 +42,11 @@ public class Character : MonoBehaviour
         battleManager = GetComponentInParent<BattleManager>();
         deck = equipment.GetComponentsInChildren<AbilityCard>();
         health = maxHealth;
+
+        if(moveRangeObj != null)
+        {
+            moveRangeObj.GetComponent<SpriteRenderer>().color = color2;
+        }
     }
 
     public void Update()
@@ -68,8 +73,8 @@ public class Character : MonoBehaviour
                     battleManager.healthSlider.maxValue = maxHealth;
                     battleManager.healthSlider.value = health;
                     UnityEngine.UI.Image[] sliderImgs = battleManager.healthSlider.GetComponentsInChildren<UnityEngine.UI.Image>();
-                    sliderImgs[0].color = color2;
-                    sliderImgs[1].color = color1;
+                    sliderImgs[0].color = Color.black; // = color2;
+                    sliderImgs[1].color = color2; // = color1;
                     rangeOn = true;
                     break;
                 }

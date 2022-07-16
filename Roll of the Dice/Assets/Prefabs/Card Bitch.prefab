@@ -624,8 +624,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerCharacter: 0
-  maxHealth: 0
-  health: 0
+  maxHealth: 1
+  health: 1
   physicalAttack: 2
   magicAttack: 1
   critMultiplier: 2
@@ -639,6 +639,8 @@ MonoBehaviour:
   color1: {r: 0.5686275, g: 0, b: 0, a: 1}
   color2: {r: 0.80784315, g: 0.16470589, b: 0.16470589, a: 1}
   moveSpeed: 5
+  targetPosition: {x: 0, y: 0, z: 0}
+  epsilon: 0.05
 --- !u!1 &7138459396534462020
 GameObject:
   m_ObjectHideFlags: 0
