@@ -756,6 +756,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: D20
       objectReference: {fileID: 0}
+    - target: {fileID: 4714034054269980239, guid: ba1719396312b8941a9c4be313b63452, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4714034054269980239, guid: ba1719396312b8941a9c4be313b63452, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba1719396312b8941a9c4be313b63452, type: 3}
 --- !u!1001 &3374133955932835055
@@ -813,6 +821,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: D8
       objectReference: {fileID: 0}
+    - target: {fileID: 5095559026859611689, guid: c410e00bd276ee148a5a88ff0c6b57e7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5095559026859611689, guid: c410e00bd276ee148a5a88ff0c6b57e7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c410e00bd276ee148a5a88ff0c6b57e7, type: 3}
 --- !u!1001 &7138459394708963007
@@ -869,6 +885,14 @@ PrefabInstance:
     - target: {fileID: 7138459396283618469, guid: 40040090d3cdee54a92ca98f10ada1d1, type: 3}
       propertyPath: m_Name
       value: Card Bitch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623065712768660789, guid: 40040090d3cdee54a92ca98f10ada1d1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623065712768660789, guid: 40040090d3cdee54a92ca98f10ada1d1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40040090d3cdee54a92ca98f10ada1d1, type: 3}
@@ -1048,6 +1072,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 37887557}
     m_Modifications:
+    - target: {fileID: 6179676490629810905, guid: a78105b19663c314d8f4bbfc2f06e071, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6179676490629810905, guid: a78105b19663c314d8f4bbfc2f06e071, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9142346277265241736, guid: a78105b19663c314d8f4bbfc2f06e071, type: 3}
       propertyPath: m_Name
       value: D4

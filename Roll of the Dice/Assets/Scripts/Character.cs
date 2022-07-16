@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
@@ -25,10 +26,12 @@ public class Character : MonoBehaviour
     public GameObject outline;
     public SpriteRenderer iconSprite;
 
-    public Color color1;
-    public Color color2;
+    public Color color1; //dark color
+    public Color color2; //light color
 
-    //[SerializeField]
+    [SerializeField] private Slider hpSlider;
+    [SerializeField] private Image hpFill;
+
     public float moveSpeed = 5f;
 
     protected AbilityCard[] deck; // only used by cards
@@ -47,6 +50,9 @@ public class Character : MonoBehaviour
         {
             moveRangeObj.GetComponent<SpriteRenderer>().color = color2;
         }
+
+        UpdateMyHpBar();
+        hpFill.color = color1;
     }
 
     public void Update()
@@ -69,12 +75,9 @@ public class Character : MonoBehaviour
                         battleManager.playerController.currentAlly = this;
                         battleManager.playerController.InitDiceSelect();
                     }
-                    battleManager.healthSlider.gameObject.SetActive(true);
-                    battleManager.healthSlider.maxValue = maxHealth;
-                    battleManager.healthSlider.value = health;
-                    UnityEngine.UI.Image[] sliderImgs = battleManager.healthSlider.GetComponentsInChildren<UnityEngine.UI.Image>();
-                    sliderImgs[0].color = Color.black; // = color2;
-                    sliderImgs[1].color = color2; // = color1;
+
+                    UpdateBigHPBar();
+
                     rangeOn = true;
                     break;
                 }
@@ -83,12 +86,37 @@ public class Character : MonoBehaviour
         if(rangeOn != moveRangeObj.activeSelf) moveRangeObj.SetActive(rangeOn);
     }
 
-    public void Damage(int hp) {
-        if(hp > 0) {
+    public void Damage(int hp) 
+    {
+        if(hp > 0) 
+        {
             health -= hp;
-            if(health <= 0) Die();
+            if(health <= 0) 
+            {
+                health = 0;
+                Die();
+            }
+
+            UpdateMyHpBar();
+            UpdateBigHPBar();
+
             // TODO: flash character
         }
+    }
+
+    public void UpdateMyHpBar()
+    {
+        hpSlider.value = ((float)health)/maxHealth;
+    }
+
+    public void UpdateBigHPBar()
+    {
+        battleManager.healthSlider.gameObject.SetActive(true);
+        battleManager.healthSlider.maxValue = maxHealth;
+        battleManager.healthSlider.value = health;
+        UnityEngine.UI.Image[] sliderImgs = battleManager.healthSlider.GetComponentsInChildren<UnityEngine.UI.Image>();
+        sliderImgs[0].color = Color.black; // = color2;
+        sliderImgs[1].color = color2; // = color1;
     }
 
     public void Die() {
