@@ -5,12 +5,15 @@ using UnityEngine.Events;
 
 public class AbilityDice : MonoBehaviour
 {
+    [System.Serializable]
     public struct DiceAction {
+        public string name;
         public int numOfSides;
         public Sprite icon;
         public UnityEvent<Character> action;
     }
 
+    [SerializeField]
     public DiceAction[] DiceSides;
 
     int totalSides;

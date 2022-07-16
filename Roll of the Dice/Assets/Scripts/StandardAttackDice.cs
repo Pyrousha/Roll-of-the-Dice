@@ -5,6 +5,17 @@ using UnityEngine;
 public class StandardAttackDice : AbilityDice
 {
     public void StandardAttack(Character target) {
-        
+        Character c = GetComponentInParent<Character>();
+        target.Damage(c.physicalAttack);
+    }
+
+    public void CriticalHit(Character target) {
+        Character c = GetComponentInParent<Character>();
+        target.Damage(Mathf.FloorToInt(c.physicalAttack * c.critMultiplier));
+    }
+
+    public void ClumsyAttack(Character target) {
+        Character c = GetComponentInParent<Character>();
+        target.Damage(Mathf.FloorToInt(c.physicalAttack / c.clumsyPenalty));
     }
 }
