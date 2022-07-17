@@ -43,6 +43,8 @@ public class Character : MonoBehaviour
     public int confused = 0;
     public int buffed = 0;
 
+    protected float minDistance = 1.5f;
+
     void Start()
     {   
         battleManager = GetComponentInParent<BattleManager>();
@@ -184,14 +186,38 @@ public class Character : MonoBehaviour
         return character;
     }
 
+    public Character GetClosestEnemyCharacter()
+    {
+        Character character = null;
+        float minDistance = Mathf.Infinity;
+        foreach(Character c in transform.parent.GetComponentsInChildren<Character>())
+        {
+            if(!c.isPlayerCharacter)
+            {
+                float newDistance = Vector2.Distance(c.transform.position, transform.position);
+                if(newDistance < minDistance)
+                {
+                    minDistance = newDistance;
+                    character = c;
+                }
+            }
+        }
+        return character;
+    }
+
     public void DoAbility(AbilityCard card)
     {
         StartCoroutine(MoveTowardsPoint(card));
     }
 
-    protected Vector3 TargetConfused()
+    protected void TargetConfused()
     {
-        
+        Character closest = GetClosestEnemyCharacter();
+        Vector2 unit = (new Vector2(transform.position.x, transform.position.y) - new Vector2(closest.transform.position.x, closest.transform.position.y)).normalized;
+        Vector2 bestPos = new Vector2(closest.transform.position.x, closest.transform.position.y) + unit * minDistance;
+        if(moveRangeObj.GetComponent<Collider2D>().OverlapPoint(bestPos)) targetPosition = bestPos;
+        else targetPosition = moveRangeObj.GetComponent<Collider2D>().ClosestPoint(bestPos);
+        targetPosition.z = closest.transform.position.z;
     }
 
     IEnumerator MoveTowardsPoint(AbilityCard card)
