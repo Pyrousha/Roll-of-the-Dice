@@ -175,9 +175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerCharacter: 1
-  maxHealth: 20
-  physicalAttack: 4
-  magicAttack: 4
+  maxHealth: 35
+  physicalAttack: 7
+  magicAttack: 7
   critMultiplier: 2
   clumsyPenalty: 3
   anim: {fileID: 3374133955339534949}
@@ -796,7 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiceSides:
   - name: Berserk
-    numOfSides: 1
+    numOfSides: 2
     icon: {fileID: 1616256891, guid: 14d076e743f6feb49933775165874e67, type: 3}
     action:
       m_PersistentCalls:
@@ -814,7 +814,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - name: Miss
-    numOfSides: 7
+    numOfSides: 6
     icon: {fileID: -1161131935, guid: 36cdece19d09d9140a9a99235e8bcf1a, type: 3}
     action:
       m_PersistentCalls:

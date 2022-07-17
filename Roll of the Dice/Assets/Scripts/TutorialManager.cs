@@ -100,6 +100,6 @@ public class TutorialManager : MonoBehaviour
 
     public void EndTutorial()
     {
-        
+        SceneController.Instance.GoToNextScene();
     }
 }

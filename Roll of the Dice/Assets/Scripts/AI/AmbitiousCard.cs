@@ -21,8 +21,10 @@ public class AmbitiousCard : Character
 
             Vector2 unit = (new Vector2(transform.position.x, transform.position.y) - new Vector2(target.transform.position.x, target.transform.position.y)).normalized;
             Vector2 bestPos = new Vector2(target.transform.position.x, target.transform.position.y) + unit * minDistance;
+            moveRangeObj.SetActive(true);
             if(moveRangeObj.GetComponent<Collider2D>().OverlapPoint(bestPos)) targetPosition = bestPos;
             else targetPosition = moveRangeObj.GetComponent<Collider2D>().ClosestPoint(bestPos);
+            moveRangeObj.SetActive(false);
             targetPosition.z = target.transform.position.z;
         }
         int abilityIndex = Mathf.FloorToInt(Random.value * deck.Length);

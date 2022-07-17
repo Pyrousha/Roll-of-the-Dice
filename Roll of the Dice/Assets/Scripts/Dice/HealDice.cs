@@ -8,20 +8,20 @@ public class HealDice : AbilityDice
     {
         Character c = GetComponentInParent<Character>();
         target.Damage(-c.magicAttack/2);
-        c.Damage(-c.magicAttack/8);
+        c.Damage(-c.magicAttack/4);
     }
 
     public void Heal(Character target)
     {
         Character c = GetComponentInParent<Character>();
         target.Damage(-c.magicAttack);
-        c.Damage(-c.magicAttack/4);
+        c.Damage(-c.magicAttack/2);
     }
 
     public void MajorHeal(Character target)
     {
         Character c = GetComponentInParent<Character>();
         target.Damage(-c.magicAttack*2);
-        c.Damage(-c.magicAttack/2);
+        c.Damage(-c.magicAttack);
     }
 }
