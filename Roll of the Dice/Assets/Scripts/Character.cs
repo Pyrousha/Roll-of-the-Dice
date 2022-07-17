@@ -41,7 +41,8 @@ public class Character : MonoBehaviour
     protected AbilityCard[] deck; // only used by cards
     public Vector3 targetPosition;
 
-    public float epsilon = 0.05f;
+    public float epsilon {get; private set;}
+    
     private BattleManager battleManager;
 
     private int confused = 0;
@@ -72,6 +73,8 @@ public class Character : MonoBehaviour
 
     void Start()
     {   
+        epsilon = 0.2f;
+
         battleManager = GetComponentInParent<BattleManager>();
         deck = equipment.GetComponentsInChildren<AbilityCard>();
         health = maxHealth;
@@ -118,6 +121,8 @@ public class Character : MonoBehaviour
 
     public void Damage(int hp) 
     {
+        bool showNumber = true;
+
         if(hp > 0) 
         {
             //take damage
@@ -134,20 +139,37 @@ public class Character : MonoBehaviour
         }
         else
         {
-            //heal
-
-            int missingHealth = maxHealth - health;
-            hp = -Mathf.Min(missingHealth, -hp);
-            health -= hp; 
-
             if(hp < 0)
-                SFXManager.Instance.PlayAudio(SFXManager.SFXType.heal); //healing nonzero amount
+            {
+                //heal
+
+                int missingHealth = maxHealth - health;
+                hp = -Mathf.Min(missingHealth, -hp);
+                health -= hp; 
+
+                if(hp < 0) //still health to heal
+                {
+                    SFXManager.Instance.PlayAudio(SFXManager.SFXType.heal); //healing nonzero amount
+                }
+                else
+                {
+                    //max hp, don't show number
+                    showNumber = false;
+                }
+            }
+            else 
+            {
+                //miss
+
+                SFXManager.Instance.PlayAudio(SFXManager.SFXType.miss);
+            }
         }
 
         UpdateMyHpBar();
         UpdateBigHPBar();
 
-        DamageNumberAndFXCanvas.Instance.SpawnDamageNumber(transform, hp);
+        if(showNumber)
+            DamageNumberAndFXCanvas.Instance.SpawnDamageNumber(transform, hp);
     }
 
     public void UpdateMyHpBar()

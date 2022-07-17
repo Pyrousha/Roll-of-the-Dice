@@ -10,7 +10,8 @@ public class SFXManager : Singleton<SFXManager>
         heal,
         die,
         win,
-        lose
+        lose,
+        miss
     }
 
     //This list should line up with the order of the enum above, otherwise the right sound effect may not be played

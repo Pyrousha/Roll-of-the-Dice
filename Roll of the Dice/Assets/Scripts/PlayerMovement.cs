@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 targetPosition;
 
-    private float epsilon = 0.05f;
+    private float epsilon = 0.15f;
 
     public bool playerTurn = false;
     int allyIndex = 0;
@@ -48,12 +48,19 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if(playerTurn && currentAlly != null) {
+        if(playerTurn && currentAlly != null) 
+        {
+            if(Input.GetMouseButtonDown(1))
+            {
+                //unselect dice
+                activeDiceIndex = -1;
+                InitDiceSelect();
+            }
+
             //bool diceSelectOn = (activeDiceindex == -1) && (currentAlly != null);
             RaycastHit2D[] hitArr = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             foreach(RaycastHit2D hit in hitArr)
             {
-                
                 //Check if the player clicked within their movement range
                 //if(hit.collider.gameObject.layer == gameObject.layer)
                 if(hit.collider.gameObject == currentAlly.moveRangeObj)
@@ -71,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
                         //RaycastHit2D[] hitArr = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                         //if(hit.collider.gameObject.layer == gameObject.layer)
                         //Clicked on a valid point
-                        if(currentAlly.Confused  >0)
+                        if(currentAlly.Confused  > 0)
                         {
                             Character closest = currentAlly.GetClosestPlayerCharacter();
                             Vector2 unit = (new Vector2(currentAlly.transform.position.x, currentAlly.transform.position.y) - new Vector2(closest.transform.position.x, closest.transform.position.y)).normalized;

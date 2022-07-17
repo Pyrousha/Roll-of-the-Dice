@@ -71,7 +71,7 @@ public class King : Character
             {
                 hide = false;
                 stop = true;
-                targetPosition = transform.position + Vector3.up*4;
+                targetPosition = transform.position + Vector3.up*7;
                 DoAbility(deck[0]);
             }
             else if(stop)
