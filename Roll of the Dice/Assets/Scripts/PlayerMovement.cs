@@ -229,7 +229,7 @@ currentAlly.outline.GetComponent<SpriteRenderer>().color = color;
             Character charHit = col.GetComponentInParent<Character>();
             if(charHit != null)
             {
-                if(charHit.isPlayerCharacter) continue;
+                //if(charHit.isPlayerCharacter) continue;
                 if(charHit != currentAlly) dice.DoAction(action, charHit);
             }
         }

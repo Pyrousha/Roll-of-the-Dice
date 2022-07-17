@@ -256,7 +256,7 @@ Transform:
   - {fileID: 2144215061}
   - {fileID: 360614043}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &282317602
 PrefabInstance:
@@ -854,6 +854,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 792782656}
   m_CullTransparentMesh: 1
+--- !u!1001 &807785476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -19.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555816, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309555819, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3608083866309556630, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: clipToPlay
+      value: 
+      objectReference: {fileID: 8300000, guid: 8dcf8c0f2fe204147a3638cd344bbee6, type: 3}
+    - target: {fileID: 3608083866309556630, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
+      propertyPath: playOnStart
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 92b56f3d6dadc3a4f8016e74d70c3037, type: 3}
 --- !u!1 &815781427
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +1182,7 @@ Transform:
   - {fileID: 544962869}
   - {fileID: 1847268491}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958448442
 GameObject:
@@ -1635,8 +1700,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 29, y: -68}
-  m_SizeDelta: {x: 595.8126, y: 134.95349}
+  m_AnchoredPosition: {x: -1, y: -65}
+  m_SizeDelta: {x: 1044.0013, y: 130.3567}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1391994508
 MonoBehaviour:
@@ -1658,7 +1723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Roll the Dice
+  m_text: Polyhedral Pummeling
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

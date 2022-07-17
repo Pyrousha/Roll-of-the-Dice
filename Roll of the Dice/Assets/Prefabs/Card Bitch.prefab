@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerCharacter: 0
-  maxHealth: 1
+  maxHealth: 30
   physicalAttack: 2
   magicAttack: 1
   critMultiplier: 2
