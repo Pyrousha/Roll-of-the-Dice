@@ -6,16 +6,16 @@ public class StandardAttackDice : AbilityDice
 {
     public void StandardAttack(Character target) {
         Character c = GetComponentInParent<Character>();
-        target.Damage(c.physicalAttack);
+        target.Damage(c.physicalAttack+c.buffed);
     }
 
     public void CriticalHit(Character target) {
         Character c = GetComponentInParent<Character>();
-        target.Damage(Mathf.FloorToInt(c.physicalAttack * c.critMultiplier));
+        target.Damage(Mathf.FloorToInt((c.physicalAttack+c.buffed) * c.critMultiplier));
     }
 
     public void ClumsyAttack(Character target) {
         Character c = GetComponentInParent<Character>();
-        target.Damage(Mathf.FloorToInt(c.physicalAttack / c.clumsyPenalty));
+        target.Damage(Mathf.FloorToInt((c.physicalAttack+c.buffed) / c.clumsyPenalty));
     }
 }

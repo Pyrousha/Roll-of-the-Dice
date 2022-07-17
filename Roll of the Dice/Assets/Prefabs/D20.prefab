@@ -1,5 +1,86 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &886189348291928811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8040451781065600601}
+  - component: {fileID: 8246344053394405302}
+  m_Layer: 6
+  m_Name: Self Destruct
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8040451781065600601
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886189348291928811}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1881232741969552094}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8246344053394405302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886189348291928811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad29579cc54708449ad4865eced2190e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DiceSides:
+  - name: Self Destruct
+    numOfSides: 19
+    icon: {fileID: -2039384794, guid: 682f1669fe3475a4bbff1fe7234d96d3, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8246344053394405302}
+          m_TargetAssemblyTypeName: SelfDestructDice, Assembly-CSharp
+          m_MethodName: SelfDestruct
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - name: Controlled Explosion
+    numOfSides: 1
+    icon: {fileID: 2014760775, guid: 78039f7fc39573548ba263c7442bef1a, type: 3}
+    action:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8246344053394405302}
+          m_TargetAssemblyTypeName: SelfDestructDice, Assembly-CSharp
+          m_MethodName: ControlledExplosion
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1881232741553505613
 GameObject:
   m_ObjectHideFlags: 0
@@ -135,6 +216,7 @@ Transform:
   m_Children:
   - {fileID: 1881232742852611597}
   - {fileID: 7486940084606514830}
+  - {fileID: 8040451781065600601}
   m_Father: {fileID: 1881232742874686616}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -715,6 +797,8 @@ MonoBehaviour:
   moveSpeed: 5
   targetPosition: {x: 0, y: 0, z: 0}
   epsilon: 0.05
+  confused: 0
+  buffed: 0
 --- !u!1 &1881232743146942449
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,6 +40,9 @@ public class Character : MonoBehaviour
     public float epsilon = 0.05f;
     private BattleManager battleManager;
 
+    public int confused = 0;
+    public int buffed = 0;
+
     void Start()
     {   
         battleManager = GetComponentInParent<BattleManager>();
@@ -162,7 +165,7 @@ public class Character : MonoBehaviour
         return battleManager.GetAllAICharacters();
     }
 
-    protected Character GetClosestPlayerCharacter()
+    public Character GetClosestPlayerCharacter()
     {
         Character character = null;
         float minDistance = Mathf.Infinity;
@@ -184,6 +187,11 @@ public class Character : MonoBehaviour
     public void DoAbility(AbilityCard card)
     {
         StartCoroutine(MoveTowardsPoint(card));
+    }
+
+    protected Vector3 TargetConfused()
+    {
+        
     }
 
     IEnumerator MoveTowardsPoint(AbilityCard card)

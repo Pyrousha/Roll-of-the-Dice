@@ -79,6 +79,7 @@ public class BattleManager : MonoBehaviour
         playerController.playerTurn = false;
         playerController.enabled = false;
         playerController.waitingAlly?.iconSprite.gameObject.SetActive(false);
+        playerController.currentAlly?.iconSprite.gameObject.SetActive(false);
         foreach(Character c in GetComponentsInChildren<Character>())
         {
             c.moveRangeObj?.SetActive(false);
@@ -119,7 +120,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator ShowWin()
     {
-        
+
     }
     */
 

@@ -7,6 +7,6 @@ public class PhysicalAttackCard : AbilityCard
     public override void DoAction(Character target)
     {
         Character c = GetComponentInParent<Character>();
-        target.Damage(c.physicalAttack);
+        target.Damage(c.physicalAttack+c.buffed);
     }
 }

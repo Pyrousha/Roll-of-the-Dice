@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     public Character currentAlly;
     public Character waitingAlly;
 
+    private float minDistance = 1.5f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,15 +66,27 @@ public class PlayerMovement : MonoBehaviour
                     if(Input.GetMouseButtonDown(0) && activeDiceIndex != -1)
                     {
                         Color color = currentAlly.outline.GetComponent<SpriteRenderer>().color;
-color.a = 0;
-currentAlly.outline.GetComponent<SpriteRenderer>().color = color;
+                        color.a = 0;
+                        currentAlly.outline.GetComponent<SpriteRenderer>().color = color;
                         //RaycastHit2D[] hitArr = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                         //if(hit.collider.gameObject.layer == gameObject.layer)
                         //Clicked on a valid point
-                        targetPosition = hit.point;
-                        //targetPosition.z = transform.position.z;
-                        targetPosition.z = currentAlly.transform.position.z;
-
+                        if(currentAlly.confused  >0)
+                        {
+                            Character closest = currentAlly.GetClosestPlayerCharacter();
+                            Vector2 unit = (new Vector2(currentAlly.transform.position.x, currentAlly.transform.position.y) - new Vector2(closest.transform.position.x, closest.transform.position.y)).normalized;
+                            Vector2 bestPos = new Vector2(closest.transform.position.x, closest.transform.position.y) + unit * minDistance;
+                            if(currentAlly.moveRangeObj.GetComponent<Collider2D>().OverlapPoint(bestPos)) targetPosition = bestPos;
+                            else targetPosition = currentAlly.moveRangeObj.GetComponent<Collider2D>().ClosestPoint(bestPos);
+                            targetPosition.z = closest.transform.position.z;
+                            currentAlly.confused--;
+                        }
+                        else
+                        {
+                            targetPosition = hit.point;
+                            //targetPosition.z = transform.position.z;
+                            targetPosition.z = currentAlly.transform.position.z;
+                        }
                         //disable move range obj
                         //moveRangeObj.SetActive(false);
                         EndAllyTurn(allyIndex);
