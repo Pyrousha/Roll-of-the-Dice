@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageNumberCanvas : Singleton<DamageNumberCanvas>
+public class DamageNumberAndFXCanvas : Singleton<DamageNumberAndFXCanvas>
 {
     [SerializeField] private GameObject damageNumberPrefab;
+    [SerializeField] private GameObject damageFXPrefab;
+    [SerializeField] private GameObject healFXPrefab;
+    [SerializeField] private GameObject missFXPerfab;
 
     public void SpawnDamageNumber(Transform characterHit, int damageDone)
     {

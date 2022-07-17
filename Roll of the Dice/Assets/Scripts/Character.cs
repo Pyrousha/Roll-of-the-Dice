@@ -111,7 +111,7 @@ public class Character : MonoBehaviour
             int amountToHeal = Mathf.Min(missingHealth, -hp);
         }
 
-        DamageNumberCanvas.Instance.SpawnDamageNumber(transform, hp);
+        DamageNumberAndFXCanvas.Instance.SpawnDamageNumber(transform, hp);
     }
 
     public void UpdateMyHpBar()
