@@ -210,6 +210,8 @@ public class PlayerMovement : MonoBehaviour
         //allAllies[index].hitRangeObj.SetActive(false);
     }
 
+    public bool safeToDie = false;
+
     IEnumerator MoveTowardsPoint(AbilityDice dice)
     {
         //while (Vector3.Distance(transform.position, targetPosition) > epsilon)
@@ -237,7 +239,9 @@ public class PlayerMovement : MonoBehaviour
         //ContactFilter2D filter = new ContactFilter2D();
         //hitRangeTransform.GetComponent<Collider2D>().OverlapCollider(filter, hits);
         
+        safeToDie = false;
         AbilityDice.DiceAction action = dice.RollAction();
+        int i = 0;
         foreach(Collider2D col in hitArr)
         {
             Character charHit = col.GetComponentInParent<Character>();
@@ -247,6 +251,9 @@ public class PlayerMovement : MonoBehaviour
                 if(charHit != currentAlly) dice.DoAction(action, charHit);
             }
         }
+        safeToDie = true;
+        if(currentAlly.health <= 0) currentAlly.Die();
+        currentAlly.SetBuffed(0);
 
         currentAlly.iconSprite.sprite = action.icon;
         currentAlly.iconSprite.gameObject.SetActive(true);

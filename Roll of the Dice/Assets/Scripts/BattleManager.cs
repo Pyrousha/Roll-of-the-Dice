@@ -10,6 +10,13 @@ public class BattleManager : MonoBehaviour
     public GameObject newItems;
     public UnityEngine.UI.Slider healthSlider;
 
+    public GameObject diceInfo;
+    public UnityEngine.UI.Image diceImage;
+
+    public AbilityDice[] rewards;
+
+    public TextMeshProUGUI infoDiceName;
+
     public PlayerMovement playerController;
     bool battleOver = false;
 
@@ -73,6 +80,8 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    bool won = false;
+
     void EndBattle()
     {
         battleOver = true;
@@ -92,13 +101,66 @@ public class BattleManager : MonoBehaviour
         UIFade.SetActive(true);
         battleResult.GetComponentInChildren<TextMeshProUGUI>().SetText("Defeat");
         battleResult.SetActive(true);
+        SFXManager.Instance.PlayAudio(SFXManager.SFXType.lose);
     }
 
     void ShowWin()
     {
+        won = true;
         UIFade.SetActive(true);
         battleResult.GetComponentInChildren<TextMeshProUGUI>().SetText("Victory!");
         battleResult.SetActive(true);
+        SFXManager.Instance.PlayAudio(SFXManager.SFXType.win);
+
+        // revive all player characters
+        foreach(Character c in GetComponentsInChildren<Character>())
+        {
+            if(c.isPlayerCharacter) c.gameObject.SetActive(true);
+        }
+    }
+
+    public void Continue()
+    {
+        if(won) 
+        {
+            battleResult.SetActive(false);
+            NextReward();
+        }
+        else SceneController.Instance.LoadSceneWithIndex(0);
+    }
+
+    int rewardIndex = 0;
+    public void NextReward()
+    {
+        if(rewardIndex >= rewards.Length)
+        {
+            SceneController.Instance.GoToNextScene();
+        }
+        else
+        {
+            newItems.SetActive(true);
+            diceInfo.SetActive(true);
+
+            int i = 0;
+            foreach(AbilityDice.DiceAction action in rewards[rewardIndex].DiceSides)
+            {
+                GameObject go = diceInfo.transform.GetChild(i).gameObject;
+                go.GetComponentInChildren<UnityEngine.UI.Image>().sprite = action.icon;
+                go.GetComponentInChildren<TextMeshProUGUI>().SetText(System.String.Format("{0} x{1}", action.name, action.numOfSides));
+                go.SetActive(true);
+                i++;
+            }
+            for(; i < diceInfo.transform.childCount; i++)
+            {
+                GameObject go = diceInfo.transform.GetChild(i).gameObject;
+                go.SetActive(false);
+            }
+
+            diceImage.sprite = rewards[rewardIndex].GetComponentInParent<Character>(true).GetComponentInChildren<SpriteRenderer>(true).sprite;
+            //newItems.GetComponentInChildren<TextMeshProUGUI>().SetText(rewards[rewardIndex].gameObject.name);
+            infoDiceName.SetText(rewards[rewardIndex].gameObject.name);
+            rewardIndex++;
+        }
     }
 
     /*

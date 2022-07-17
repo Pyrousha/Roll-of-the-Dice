@@ -123,7 +123,7 @@ public class Character : MonoBehaviour
             //take damage
 
             health -= hp;
-            if(health <= 0) 
+            if(health <= 0 && (battleManager.playerController.safeToDie || battleManager.playerController.currentAlly != this)) 
             {
                 health = 0;
                 Die();
@@ -200,7 +200,7 @@ public class Character : MonoBehaviour
 
     public Character GetClosestPlayerCharacter()
     {
-        Character character = null;
+        Character character = this;
         float minDistance = Mathf.Infinity;
         foreach(Character c in transform.parent.GetComponentsInChildren<Character>())
         {
@@ -219,7 +219,7 @@ public class Character : MonoBehaviour
 
     public Character GetClosestEnemyCharacter()
     {
-        Character character = null;
+        Character character = this;
         float minDistance = Mathf.Infinity;
         foreach(Character c in transform.parent.GetComponentsInChildren<Character>())
         {
@@ -290,6 +290,7 @@ public class Character : MonoBehaviour
                 if(charHit != this) card.DoAction(charHit);
             }
         }
+        SetBuffed(0);
 
         if(currentChain == null) transform.parent.GetComponent<BattleManager>().StartPlayerTurn();
         else if(currentChain.Length == 1) currentChain[0].DoTurn(null);
