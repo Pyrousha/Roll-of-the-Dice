@@ -8,7 +8,9 @@ public class SFXManager : Singleton<SFXManager>
     {
         dealDamage,
         heal,
-        die
+        die,
+        win,
+        lose
     }
 
     //This list should line up with the order of the enum above, otherwise the right sound effect may not be played
