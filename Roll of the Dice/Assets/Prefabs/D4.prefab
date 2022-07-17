@@ -252,8 +252,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerCharacter: 1
   maxHealth: 15
-  physicalAttack: 2
-  magicAttack: 6
+  physicalAttack: 4
+  magicAttack: 10
   critMultiplier: 2
   clumsyPenalty: 3
   anim: {fileID: 9142346278106904514}

@@ -593,7 +593,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiceSides:
   - name: Attack
-    numOfSides: 10
+    numOfSides: 7
     icon: {fileID: 1958911823, guid: 70b45e391c597854cb48173aed39d9f0, type: 3}
     action:
       m_PersistentCalls:
@@ -611,7 +611,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - name: Critical Hit
-    numOfSides: 4
+    numOfSides: 3
     icon: {fileID: 211913040, guid: 0408f7c1d48ace94e9b537a810255508, type: 3}
     action:
       m_PersistentCalls:
@@ -629,7 +629,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   - name: Clumsy Attack
-    numOfSides: 6
+    numOfSides: 10
     icon: {fileID: 419483868, guid: 3b6ce4c79e3240c40a30a72a8a653824, type: 3}
     action:
       m_PersistentCalls:
@@ -697,9 +697,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerCharacter: 1
-  maxHealth: 40
-  physicalAttack: 6
-  magicAttack: 2
+  maxHealth: 25
+  physicalAttack: 10
+  magicAttack: 5
   critMultiplier: 2
   clumsyPenalty: 3
   anim: {fileID: 1881232742735207402}
