@@ -104,6 +104,7 @@ public class Character : MonoBehaviour
                 Die();
             }
 
+            SFXManager.Instance.PlayAudio(SFXManager.SFXType.dealDamage);
             // TODO: flash character
         }
         else
@@ -113,6 +114,9 @@ public class Character : MonoBehaviour
             int missingHealth = maxHealth - health;
             hp = -Mathf.Min(missingHealth, -hp);
             health -= hp; 
+
+            if(hp < 0)
+                SFXManager.Instance.PlayAudio(SFXManager.SFXType.heal); //healing nonzero amount
         }
 
         UpdateMyHpBar();
@@ -141,6 +145,8 @@ public class Character : MonoBehaviour
         anim.SetTrigger("Die");
         gameObject.SetActive(false);
         battleManager.NotifyDeath(this);
+
+        SFXManager.Instance.PlayAudio(SFXManager.SFXType.die);
     }
 
     public AbilityDice[] GetEquippedDice() {
