@@ -90,6 +90,8 @@ public class Character : MonoBehaviour
     {
         if(hp > 0) 
         {
+            //take damage
+
             health -= hp;
             if(health <= 0) 
             {
@@ -99,9 +101,17 @@ public class Character : MonoBehaviour
 
             UpdateMyHpBar();
             UpdateBigHPBar();
-
             // TODO: flash character
         }
+        else
+        {
+            //heal
+
+            int missingHealth = maxHealth - health;
+            int amountToHeal = Mathf.Min(missingHealth, -hp);
+        }
+
+        DamageNumberCanvas.Instance.SpawnDamageNumber(transform, hp);
     }
 
     public void UpdateMyHpBar()
