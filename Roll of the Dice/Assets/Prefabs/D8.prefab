@@ -828,12 +828,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - name: Miss
-    numOfSides: 7
-    icon: {fileID: 0}
-    action:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1001 &6061633771689339768
 PrefabInstance:
   m_ObjectHideFlags: 0
