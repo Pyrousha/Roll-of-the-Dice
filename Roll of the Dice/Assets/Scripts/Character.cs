@@ -106,7 +106,8 @@ public class Character : MonoBehaviour
             //heal
 
             int missingHealth = maxHealth - health;
-            int amountToHeal = Mathf.Min(missingHealth, -hp);
+            hp = -Mathf.Min(missingHealth, -hp);
+            health -= hp; 
         }
 
         UpdateMyHpBar();
