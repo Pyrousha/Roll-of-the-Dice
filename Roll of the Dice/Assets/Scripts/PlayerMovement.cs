@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
                         //RaycastHit2D[] hitArr = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
                         //if(hit.collider.gameObject.layer == gameObject.layer)
                         //Clicked on a valid point
-                        if(currentAlly.confused  >0)
+                        if(currentAlly.Confused  >0)
                         {
                             Character closest = currentAlly.GetClosestPlayerCharacter();
                             Vector2 unit = (new Vector2(currentAlly.transform.position.x, currentAlly.transform.position.y) - new Vector2(closest.transform.position.x, closest.transform.position.y)).normalized;
@@ -79,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
                             if(currentAlly.moveRangeObj.GetComponent<Collider2D>().OverlapPoint(bestPos)) targetPosition = bestPos;
                             else targetPosition = currentAlly.moveRangeObj.GetComponent<Collider2D>().ClosestPoint(bestPos);
                             targetPosition.z = closest.transform.position.z;
-                            currentAlly.confused--;
+                            currentAlly.SetConfused(currentAlly.Confused - 1);
                         }
                         else
                         {

@@ -29,6 +29,10 @@ public class Character : MonoBehaviour
     public Color color1; //dark color
     public Color color2; //light color
 
+    [Header("Self-References")]
+    [SerializeField] private GameObject buffedObj;
+    [SerializeField] private GameObject confusedObj;
+
     [SerializeField] private Slider hpSlider;
     [SerializeField] private Image hpFill;
 
@@ -40,8 +44,29 @@ public class Character : MonoBehaviour
     public float epsilon = 0.05f;
     private BattleManager battleManager;
 
-    public int confused = 0;
-    public int buffed = 0;
+    private int confused = 0;
+    public int Confused => confused;
+    public void SetConfused(int newConfused)
+    {
+        confused = newConfused;
+
+        if(confused <= 0)
+            confusedObj.SetActive(false);
+        else
+            confusedObj.SetActive(true);
+    }
+
+    private int buffed = 0;
+    public int Buffed => buffed;
+    public void SetBuffed(int newBuffed)
+    {
+        buffed = newBuffed;
+
+        if(buffed <= 0)
+            buffedObj.SetActive(false);
+        else
+            buffedObj.SetActive(true);
+    }
 
     protected float minDistance = 1.5f;
 

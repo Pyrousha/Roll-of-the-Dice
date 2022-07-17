@@ -10,7 +10,7 @@ public class CrowdControlDice : AbilityDice
     {
         Character c = GetComponentInParent<Character>();
         Vector2 unit = (new Vector2(target.transform.position.x, target.transform.position.y) - new Vector2(c.transform.position.x, c.transform.position.y)).normalized;
-        target.Damage((c.physicalAttack+c.buffed) / 4);
+        target.Damage((c.physicalAttack+c.Buffed) / 4);
         StartCoroutine(BashMove(target, c.transform.position+new Vector3(unit.x, unit.y, 0)*knockback));
     }
 
@@ -18,7 +18,7 @@ public class CrowdControlDice : AbilityDice
     {
         Character c = GetComponentInParent<Character>();
         Vector2 unit = (new Vector2(target.transform.position.x, target.transform.position.y) - new Vector2(c.transform.position.x, c.transform.position.y)).normalized;
-        target.Damage(c.physicalAttack+c.buffed);
+        target.Damage(c.physicalAttack+c.Buffed);
         StartCoroutine(BashMove(target, c.transform.position+new Vector3(unit.x, unit.y, 0)*Mathf.FloorToInt(knockback*1.5f)));
     }
 
@@ -31,8 +31,8 @@ public class CrowdControlDice : AbilityDice
     {
         Character c = GetComponentInParent<Character>();
         Vector2 unit = (new Vector2(target.transform.position.x, target.transform.position.y) - new Vector2(c.transform.position.x, c.transform.position.y)).normalized;
-        target.Damage((c.physicalAttack+c.buffed) / 8);
-        c.Damage((c.physicalAttack+c.buffed) / 8);
+        target.Damage((c.physicalAttack+c.Buffed) / 8);
+        c.Damage((c.physicalAttack+c.Buffed) / 8);
         StartCoroutine(BashMove(target, c.transform.position+new Vector3(unit.x, unit.y, 0)*knockback/2));
     }
 
