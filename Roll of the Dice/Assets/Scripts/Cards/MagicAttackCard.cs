@@ -7,6 +7,6 @@ public class MagicAttackCard : AbilityCard
     public override void DoAction(Character target)
     {
         Character c = GetComponentInParent<Character>();
-        target.Damage(c.magicAttack+c.buffed);
+        target.Damage(c.magicAttack+c.Buffed);
     }
 }

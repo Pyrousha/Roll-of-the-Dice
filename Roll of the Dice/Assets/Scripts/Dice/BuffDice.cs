@@ -7,11 +7,11 @@ public class BuffDice : AbilityDice
     public void Buff(Character target)
     {
         Character c = GetComponentInParent<Character>();
-        target.buffed = c.magicAttack;
+        target.SetBuffed(c.magicAttack);
     }
 
     public void Confuse(Character target)
     {
-        target.confused = 1;
+        target.SetConfused(1);
     }
 }

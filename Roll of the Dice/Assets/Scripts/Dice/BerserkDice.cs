@@ -7,7 +7,7 @@ public class BerserkDice : AbilityDice
     public void Berserk(Character target)
     {
         Character c = GetComponentInParent<Character>();
-        target.Damage((c.physicalAttack+c.buffed)*8);
+        target.Damage((c.physicalAttack+c.Buffed)*8);
     }
 
     public void Miss(Character target)

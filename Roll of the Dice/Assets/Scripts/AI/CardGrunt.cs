@@ -7,7 +7,7 @@ public class CardGrunt : Character
     public override void DoTurn()
     {
         // limit attack range
-        if(confused > 0) TargetConfused();
+        if(Confused > 0) TargetConfused();
         else
         {
             Character closest = GetClosestPlayerCharacter();
