@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 1049627377}
   - component: {fileID: 1049627380}
   m_Layer: 5
-  m_Name: Damage Numbers UI
+  m_Name: Damage Numbers/FX UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,6 +701,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageNumberPrefab: {fileID: 3815878468212567737, guid: 7a7163dcd0b83ec46a82315c99043a6a, type: 3}
+  damageFXPrefab: {fileID: 1797735770974296026, guid: 96697ed9550c75c43aededf41ac2f999, type: 3}
+  healFXPrefab: {fileID: 2921937315409899974, guid: 3d80d243ee0920047827f4c2ecd46a25, type: 3}
+  missFXPrefab: {fileID: 1037420603696407986, guid: 94d0084521ab32b45952eab6f798a5d8, type: 3}
 --- !u!1 &1175090301 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7857289541352110499, guid: e0c6e85210d76184cafe40ddf55e441d, type: 3}
