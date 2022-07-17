@@ -99,8 +99,6 @@ public class Character : MonoBehaviour
                 Die();
             }
 
-            UpdateMyHpBar();
-            UpdateBigHPBar();
             // TODO: flash character
         }
         else
@@ -110,6 +108,9 @@ public class Character : MonoBehaviour
             int missingHealth = maxHealth - health;
             int amountToHeal = Mathf.Min(missingHealth, -hp);
         }
+
+        UpdateMyHpBar();
+        UpdateBigHPBar();
 
         DamageNumberAndFXCanvas.Instance.SpawnDamageNumber(transform, hp);
     }

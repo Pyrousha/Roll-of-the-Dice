@@ -11,7 +11,7 @@ public class DamageNumberAndFXCanvas : Singleton<DamageNumberAndFXCanvas>
 
     public void SpawnDamageNumber(Transform characterHit, int damageDone)
     {
-        Vector3 position = characterHit.position;
+        Vector3 position = characterHit.position + new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), 0);
         position.z = 0;
         Transform dmgNumberObj = Instantiate(damageNumberPrefab, transform.position, Quaternion.Euler(0,0,0)).transform;
         
